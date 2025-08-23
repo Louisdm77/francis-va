@@ -18,7 +18,7 @@ export default function Hero() {
           className="mb-8"
         >
           <img
-            src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=400&q=80"
+            src="https://drive.google.com/file/d/16WPWdz3TRUYn6MMAw-LdFdVXylDPbCmt/view?usp=drivesdk"
             alt="Francis Inaku"
             className="w-40 h-40 md:w-52 md:h-52 rounded-full object-cover border-4 border-slate-600 shadow-xl"
           />

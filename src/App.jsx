@@ -13,7 +13,7 @@ export default function App() {
   return (
     <div className="bg-gray-50 text-gray-800">
       <Header />
-      <main className="pt-16">
+      <main className="pt-16 overflow-x-hidden">
         <Hero />
         <About />
         <ExperienceSection />
