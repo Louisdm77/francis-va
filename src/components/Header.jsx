@@ -32,7 +32,7 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Sliding Title with mask */}
-        <div className="overflow-hidden max-w-[220px] sm:max-w-xs md:max-w-sm lg:max-w-md">
+        <div className="overflow-hidden w-full sm:max-w-xs md:max-w-sm lg:max-w-md">
           <motion.h1
             className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent whitespace-nowrap"
             animate={{
