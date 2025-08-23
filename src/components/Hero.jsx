@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 
-const text = "Your go-to virtual assistant for handling tasks, schedules, and support, so you can focus on growing your business with clarity and peace of mind.";
+const text =
+  "Your go-to virtual assistant for handling tasks, schedules, and support, so you can focus on growing your business with clarity and peace of mind.";
 
 export default function Hero() {
   return (
@@ -70,6 +71,15 @@ export default function Hero() {
             className="px-6 py-3 bg-white text-stone-800 font-medium rounded-xl shadow-lg hover:bg-yellow-100 transition"
           >
             View Work
+          </motion.a>
+        </motion.div>
+        <motion.div className="mt-6">
+          <motion.a
+            href="https://calendly.com/francisinaku2580/free-discovery-call"
+            whileHover={{ scale: 1.1, rotate: [-2, 2, -2, 0] }}
+            className="px-6 py-3 bg-white text-stone-800 font-medium rounded-xl shadow-lg hover:bg-yellow-100 transition"
+          >
+            Book Discovery Call
           </motion.a>
         </motion.div>
       </div>
