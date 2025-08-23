@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 
 const navLinks = [
@@ -11,66 +11,113 @@ const navLinks = [
   { name: "Contact", href: "#contact" },
 ];
 
+const linkVariants = {
+  hidden: { opacity: 0, y: -15 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.1, duration: 0.4, ease: "easeOut" },
+  }),
+};
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <motion.header
-      className="fixed top-0 left-0 w-full bg-white shadow z-50"
-      initial={{ y: -60, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      className="fixed top-0 left-0 w-full z-50 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-lg"
+      initial={{ y: -80, opacity: 0, scale: 0.95 }}
+      animate={{ y: 0, opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo / Brand */}
-        <h1 className="text-2xl font-bold text-blue-600 tracking-wide">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        {/* Logo */}
+        <motion.h1
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent tracking-wide"
+        >
           Francis Inaku
-        </h1>
+        </motion.h1>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6 text-sm font-medium">
-          {navLinks.map((link) => (
-            <a
+        <nav className="hidden md:flex space-x-8 text-sm font-medium">
+          {navLinks.map((link, i) => (
+            <motion.a
               key={link.name}
               href={link.href}
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-300"
+              className="relative text-slate-300 hover:text-white transition-colors"
+              initial="hidden"
+              animate="visible"
+              variants={linkVariants}
+              custom={i}
             >
               {link.name}
-            </a>
+              {/* underline animation */}
+              <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full" />
+            </motion.a>
           ))}
         </nav>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-2xl text-gray-700 focus:outline-none"
+          className="md:hidden text-3xl text-slate-300 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
-          {isOpen ? <FiX /> : <FiMenu />}
+          <AnimatePresence mode="wait" initial={false}>
+            {isOpen ? (
+              <motion.div
+                key="close"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <FiX />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="menu"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <FiMenu />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </button>
       </div>
 
-      {/* Mobile Dropdown Menu */}
-      {isOpen && (
-        <motion.div
-          className="md:hidden bg-white shadow-md px-4 pb-4 pt-2 space-y-2"
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="block text-gray-700 hover:text-blue-600 transition-colors duration-300"
-              onClick={() => setIsOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
-        </motion.div>
-      )}
+      {/* Mobile Dropdown */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="md:hidden bg-slate-900/95 backdrop-blur-sm border-t border-slate-700 shadow-lg px-6 py-6 space-y-4"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            {navLinks.map((link, i) => (
+              <motion.a
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="block text-slate-300 hover:text-blue-400 text-lg font-medium transition-colors"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.4 }}
+              >
+                {link.name}
+              </motion.a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }
