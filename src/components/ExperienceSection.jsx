@@ -38,38 +38,51 @@ const experiences = [
 
 export default function ExperienceSection() {
   return (
-    <section className="bg-slate-900 py-20 px-4 sm:px-6" id="experience">
-      <div className="max-w-6xl mx-auto">
+    <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-24 px-6" id="experience">
+      <div className="max-w-5xl mx-auto">
+        {/* Heading */}
         <motion.h2
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl font-semibold text-center text-white mb-16"
+          transition={{ duration: 0.7 }}
+          className="text-4xl font-bold text-center text-white mb-20"
         >
           Work Experience
         </motion.h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Timeline */}
+        <div className="relative border-l border-slate-700">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="bg-slate-800 rounded-2xl p-6 shadow-md border border-slate-700 hover:shadow-lg hover:border-blue-500 transition"
+              initial={{ opacity: 0, x: index % 2 === 0 ? -80 : 80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="mb-12 ml-6 relative"
             >
-              <h3 className="text-lg font-semibold text-blue-400 mb-1">
-                {exp.title}
-              </h3>
-              <p className="text-slate-400 text-sm mb-2">{exp.company}</p>
-              <span className="text-xs text-slate-500 block mb-4">
-                {exp.duration}
-              </span>
-              <ul className="list-disc pl-4 space-y-1 text-sm text-slate-300">
-                {exp.responsibilities.map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
-              </ul>
+              {/* Dot */}
+              <span className="absolute -left-3 top-2 w-6 h-6 rounded-full bg-blue-500 border-4 border-slate-900 shadow-lg" />
+
+              {/* Card */}
+              <div className="bg-slate-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-md border border-slate-700 hover:border-blue-400 hover:shadow-blue-500/20 transition">
+                <h3 className="text-xl font-semibold text-blue-400">{exp.title}</h3>
+                <p className="text-slate-400 text-sm">{exp.company}</p>
+                <span className="text-xs text-slate-500 block mb-4">{exp.duration}</span>
+                <ul className="list-disc pl-5 space-y-2 text-sm text-slate-300">
+                  {exp.responsibilities.map((item, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.1, duration: 0.4 }}
+                      viewport={{ once: true }}
+                    >
+                      {item}
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           ))}
         </div>
