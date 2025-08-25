@@ -46,9 +46,9 @@ export default function Header() {
       </div>
 
       {/* Content on top of marquee */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-4 flex justify-between items-center ">
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8 text-sm font-medium">
+        <nav className="hidden md:flex space-x-8 text-sm font-medium ml-auto  bg-opacity-90 backdrop-blur-md rounded-b-lg shadow-md p-3">
           {navLinks.map((link, i) => (
             <motion.a
               key={link.name}
