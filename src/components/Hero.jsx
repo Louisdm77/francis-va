@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import img from "../assets/img/fr.jpg"
 
 const text =
   "Your go-to virtual assistant for handling tasks, schedules, and support, so you can focus on growing your business with clarity and peace of mind.";
@@ -18,7 +19,7 @@ export default function Hero() {
           className="mb-8"
         >
           <img
-            src="https://drive.google.com/file/d/16WPWdz3TRUYn6MMAw-LdFdVXylDPbCmt/view?usp=drivesdk"
+            src={img}
             alt="Francis Inaku"
             className="w-40 h-40 md:w-52 md:h-52 rounded-full object-cover border-4 border-slate-600 shadow-xl"
           />

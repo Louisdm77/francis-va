@@ -19,7 +19,7 @@ export default function App() {
         <ExperienceSection />
         <Skills />
         <Projects />
-        <Toolkit />
+        {/* <Toolkit /> */}
         <Testimonials />
         <Contact />
       </main>

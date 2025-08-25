@@ -25,29 +25,28 @@ export default function Header() {
 
   return (
     <motion.header
-      className="fixed top-0 left-0 w-full z-50 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-lg"
+      className="fixed top-0 left-0 w-full z-50 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-lg overflow-hidden"
       initial={{ y: -80, opacity: 0, scale: 0.95 }}
       animate={{ y: 0, opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Sliding Title with mask */}
-        <div className="overflow-hidden w-full sm:max-w-xs md:max-w-sm lg:max-w-md">
-          <motion.h1
-            className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent whitespace-nowrap"
-            animate={{
-              x: ["100%", "0%", "-100%"], // right → center → left
-            }}
-            transition={{
-              duration: 10,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-          >
-            Executive Virtual Assistant & Personal Support
-          </motion.h1>
-        </div>
+      {/* Sliding Marquee Background */}
+      <div className="absolute inset-0 flex items-center overflow-hidden">
+        <motion.div
+          className="whitespace-nowrap text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
+          animate={{ x: ["100%","0%", "-100%"] }}
+          transition={{
+            repeat: Infinity,
+            duration: 10,
+            ease: "linear",
+          }}
+        >
+          Executive Virtual Assistant & Personal Support 
+        </motion.div>
+      </div>
 
+      {/* Content on top of marquee */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 text-sm font-medium">
           {navLinks.map((link, i) => (
@@ -61,7 +60,6 @@ export default function Header() {
               custom={i}
             >
               {link.name}
-              {/* underline animation */}
               <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full" />
             </motion.a>
           ))}
@@ -69,7 +67,7 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-3xl text-slate-300 focus:outline-none"
+          className="md:hidden bg-blue-300 p-3 rounded-full text-3xl text-slate-300 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >

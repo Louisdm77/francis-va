@@ -1,21 +1,23 @@
 import { motion } from "framer-motion";
+import research from "../assets/img/research.png";
+import calendar from "../assets/img/calendar.png";
 
 const projects = [
   {
-    title: "Project 01",
+    title: "Efficient Calendar & Workflow Management",
     subtitle: "Project 01",
     description:
-      "Oversaw email/calendar for executives, coordinated travel, improved document retrieval by 40%, and delivered accurate reports.",
+    "Managed executives' email and calendars, streamlined scheduling, coordinated travel logistics, enhanced document organization (improving retrieval time by 40%), and produced accurate, timely reports",
     image:
-      "https://images.unsplash.com/photo-1581090700227-1e8a44c3a3ff?auto=format&fit=crop&w=800&q=80",
+      calendar,
   },
   {
-    title: "Project 02",
+    title: "Research & Analysis",
     subtitle: "Project 02",
     description:
-      "Managed inbox, meetings, logistics, and cost optimization for training events. Reduced response time by 50%.",
+      "Conducted in-depth research, synthesized findings into clear insights, and created actionable reports that supported data-driven decision-making.",
     image:
-      "https://images.unsplash.com/photo-1573164574230-0f3b84d1a448?auto=format&fit=crop&w=800&q=80",
+      research,
   },
   {
     title: "Project 03",

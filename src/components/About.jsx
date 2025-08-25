@@ -78,7 +78,7 @@ export default function About() {
           >
             I provide tailored{" "}
             <span className="text-blue-400 font-semibold">Virtual Assistant services</span>{" "}
-            that remove friction in your day—so you can focus on growth.
+            that remove friction in your day so you can focus on growth.
           </motion.p>
 
           <motion.p
